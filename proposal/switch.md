@@ -89,3 +89,78 @@ The proposal "Relaxed switch statement" itself is fairly simple and does not
 depend on the proposals/suggestions motioned above.
 
 ## Wording
+
+Change in 4 conv paragraph 2:
+
+> -- When used in the expression of a `switch` statement<ins>, if the given
+> type is a class type implicitly convertible to an integral type</ins>.
+> The destination type is integral (6.4).
+
+Change in 6.4 stmt.select paragraph 4:
+
+> The value of a condition that is an initialized declaration in a statement
+> other than a `switch` statement
+> <ins>with the declared variable of integral or enumeration type, or of that
+> variable implicitly converted to integral or enumeration type,</ins>
+> is the value of the declared variable contextually converted to `bool` (Clause
+> 4). ... The value of a condition that is an expression is the value of the
+> expression, contextually converted to `bool` for statements other than
+> `switch`
+> <ins>with the expression of integral or enumeration type, or of that
+> expression implicitly converted to integral or enumeration type</ins>;
+> if that conversion is ill-formed, the program is ill-formed. ...
+
+Change in 6.4.2 stmt.switch paragraph 2:
+
+> The condition <del>shall</del> <ins>can</ins> be of integral type, enumeration
+> type, or of a class type for which a single non-explicit conversion function
+> to integral or enumeration type exists (12.3).  If the condition is of class
+> type, the condition is converted by calling that conversion function, and the
+> result of the conversion is used in place of the original condition for the
+> remainder of this section.  Integral promotions are performed.
+> <ins>The promoted type is the destination type.</ins>
+> <ins> The condition can also be of floating point type or a literal class
+> type which is not implicitly convertible to integral or enumeration type.
+> The type of the condition is the destination type.</ins>
+> <del>*anything left in this paragraph*</del>
+
+Add two new paragraphs after 6.4.2 stmt.switch paragraph 2:
+
+> Any statement within the `switch` statement can be labeled with one or more
+> `case` labels using one of the following syntax:
+>> **`case`** _constant-expression_ **`:`**
+> where the _constant-expression_ shall be a converted constant expression
+> (5.19) of the destination type of the switch condition; and
+>> **`case`** _braced-init-list_ **`:`**
+> which is equivalent to
+>> **`case`** _`t`_ **`:`**
+> for some invented temporary variable `t` of the destination type `T`, where
+> `constexpr T t = `_`braced-init-list`_.
+
+*Non-editorial Note: There is no conversion rule specified by the _converted
+constant expression_ for the floating point type; use the second syntax
+`{ 3.0 }` to get a consistent conversion behavior.*
+
+> For a `switch` statement with one or more `case` labels,<br/>
+>> `switch (`_s_`) {`<br/>
+>> `case `_e<sub>1</sub>_`:` ...<br/>
+>> `case `_e<sub>2</sub>_`:` ...<br/>
+>> ...<br/>
+>> `case `_e<sub>k</sub>_`:` ...<br/>
+>> `}`
+> the constant expressions _e<sub>i</sub>_ `==` _e<sub>i</sub>_ and
+> _e<sub>i</sub>_ `!=` _e<sub>j</sub>_ where _i &ne; j_, if any, must yield all
+> true values for each _1 &le; i &le; k_ and _1 &le; j &le; k_.  The program
+> is ill-formed if any of these expressions yields a false value.  *\[Note:
+> For a literal class type not implicitly convertible to integral or
+> enumeration type, a user-defined `constexpr operator==` needs to be
+> issued at compile-time to perform the check, and the same operator shall
+> be selected to compare `s` and each `e`<sub>i</sub> at runtime. --end note\]*
+
+Add a new grammar in A.5 gram.stmt:
+
+> _labeled-statement:_
+>> ...<br/>
+>> _attribute-specifier-seq<sub>opt</sub>_ **`case`** _braced-init-list_
+>> **`:`** _statement_<br/>
+>> ...
