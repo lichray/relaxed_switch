@@ -161,6 +161,12 @@ constant expression_ for the floating point type; use the second syntax
 > enumeration type, a user-defined `constexpr operator==` needs to be
 > issued at compile-time to perform the check, and the same operator shall
 > be selected to compare `s` and each `e`<sub>i</sub> at runtime. --end note\]*
+> If _k &gt; 1_ and the strict weak ordering (25.4) is hold among all the
+> expressions from _e<sub>1</sub>_ to _e<sub>k</sub>_ except _s_, the behavior
+> is undefined.
+> *\[Note:  An implementation is allowed to perform a binary search to match a
+> `case` label at runtime if the strict total ordering is found to be hold at
+> compile-time. --end note\]*
 
 Add a new grammar in A.5 gram.stmt:
 
