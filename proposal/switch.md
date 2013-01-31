@@ -153,7 +153,7 @@ constant expression_ for the floating point type; use the second syntax
 >> ...<br/>
 >> `case `_e<sub>k</sub>_`:` ...<br/>
 >> `}`
-> the constant expressions _e<sub>i</sub>_ `==` _e<sub>i</sub>_ and
+> the converted constant expressions _e<sub>i</sub>_ `==` _e<sub>i</sub>_ and
 > _e<sub>i</sub>_ `!=` _e<sub>j</sub>_ where _i &ne; j_, if any, must yield all
 > true values for each _1 &le; i &le; k_ and _1 &le; j &le; k_.  The program
 > is ill-formed if any of these expressions yields a false value.  *\[Note:
