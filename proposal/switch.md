@@ -42,6 +42,11 @@ has to be used at compile-time to ensure that all of the `case` are identical.
 So, the solution is to simply ill-form the use of a user-defined literal type
 without a `constexpr operator==` in the `switch` statement.
 
+One benefit of having a side-effect-free matching is that the `case` labels
+can be matched in any order, hence, as an optimization, the labels can be
+sorted at compile-time to enable a binary search at runtime if a `constexpr
+operator<` is defined for the literal type.  -- By Gabriel Dos Reis.
+
 ## Examples
 
 There are several control logics that can't be achieved in a scalable way with
