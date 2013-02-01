@@ -98,7 +98,8 @@ depend on the proposals/suggestions motioned above.
 Change in 4 conv paragraph 2:
 
 > -- When used in the expression of a `switch` statement<ins>, if the given
-> type is a class type implicitly convertible to an integral type</ins>.
+> type is a class type implicitly convertible to an integral or enumeration
+> type</ins>.
 > The destination type is integral (6.4).
 
 Change in 6.4 stmt.select paragraph 4:
