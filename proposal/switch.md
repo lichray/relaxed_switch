@@ -23,7 +23,7 @@ del { text-decoration: line-through; background-color: #FFA0A0 }
 	}
 
 What is the first time you heard of that the `switch` statement only allows
-integer?  The time you want something like above, I suppose?  Well, we have
+integers?  The time you want something like this, I suppose?  Well, we have
 reasons to place such a limitation before C++11, but now, we have `constexpr`
 constructors.  We can trivially relax the expression inside the `switch`
 statement to cover more literal types.
@@ -31,10 +31,10 @@ statement to cover more literal types.
 ## Scope
 
 Some C-like programming languages, like JavaScript, furtherly allows any
-expressions to be used in the `case` label.  This proposal does not include
+expressions to be used in the `case` labels.  This proposal does not include
 such a change, because the semantics of the `switch` statement has to be
-changed from "matching (in any order)" to "comparing from top to bottom" to
-ensure the possible side-effects inside the `case` labels.
+changed from "matching" (in any order) to "comparing from top to bottom" to
+satisfy the possible side-effects inside the `case` labels.
 
 Although, with the proposed change, the comparison may rely on a user-defined
 `operator==` at runtime when matching a `case` label, but the same `operator==`
