@@ -171,6 +171,11 @@ constant expression_ for the floating point type; use the second syntax
 > expression `e < s` and `!(s < e)`, while for all elements `e`, `e < s` shall
 > imply `!(s < e)`; otherwise, the behavior is undefined.
 
+*Non-editorial Note: A "switch" statement may be implemented using an
+"if...else" chain, a binary search, or even a hash table. The requirements
+above ensure that a complexity of log(N) can always be implemented (but not
+enforced).*
+
 Add a new grammar in A.5 gram.stmt:
 
 > _labeled-statement:_
