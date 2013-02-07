@@ -8,7 +8,7 @@ del { text-decoration: line-through; background-color: #FFA0A0 }
 
 <table><tbody>
 <tr><th>Doc. no.:</th>	<td>Nnnnn</td></tr>
-<tr><th>Date:</th>	<td>2013-01-26</td></tr>
+<tr><th>Date:</th>	<td>2013-02-07</td></tr>
 <tr><th>Project:</th>	<td>Programming Language C++, Evolution Working Group</td></tr>
 <tr><th>Reply-to:</th>	<td>Zhihao Yuan &lt;lichray at gmail dot com&gt;</td></tr>
 </tbody></table>
@@ -165,7 +165,7 @@ constant expression_ for the floating point type; use the second syntax
 > needs to be issued to ensure the uniqueness of
 > _e<sub>1</sub> ...  e<sub>k</sub>_, and a user-defined `constexpr operator<`
 > can be issued to ensure the sortability of _e<sub>1</sub> ...  e<sub>k</sub>_;
-> the same operators shall be selected at runtime. --end note\]*
+> the same operators shall be selected at runtime, if needed. --end note\]*
 > The elements `e` of a sorted sequence containing
 > _e<sub>1</sub> ...  e<sub>k</sub>_ are partitioned with respect to the
 > expression `e < s` and `!(s < e)`, while for all elements `e`, `e < s` shall
