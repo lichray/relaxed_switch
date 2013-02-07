@@ -154,20 +154,22 @@ constant expression_ for the floating point type; use the second syntax
 >> ...<br/>
 >> `case `_e<sub>k</sub>_`:` ...<br/>
 >> `}`
-> the converted constant expressions _e<sub>i</sub>_ `==` _e<sub>i</sub>_ and
-> _e<sub>i</sub>_ `!=` _e<sub>j</sub>_ where _i &ne; j_, if any, must yield all
-> true values for each _1 &le; i &le; k_ and _1 &le; j &le; k_.  The program
-> is ill-formed if any of these expressions yields a false value.  *\[Note:
+> the converted constant expressions _e<sub>i</sub>_ `==` _e<sub>i</sub>_,
+> `!(`_e<sub>i</sub>_ `<` _e<sub>i</sub>_`)`, and
+> _e<sub>i</sub>_ `!=` _e<sub>j</sub>_ where _i &ne; j_, if any, when
+> contextually converted to `bool` (4), must yield
+> `true` for each _1 &le; i &le; k_ and _1 &le; j &le; k_; otherwise, the
+> program is ill-formed.  *\[Note:
 > For a literal class type not implicitly convertible to integral or
-> enumeration type, a user-defined `constexpr operator==` needs to be
-> issued at compile-time to perform the check, and the same operator shall
-> be selected to compare `s` and each `e`<sub>i</sub> at runtime. --end note\]*
-> If _k &gt; 1_ and the strict weak ordering (25.4) is hold among all the
-> expressions from _e<sub>1</sub>_ to _e<sub>k</sub>_ except _s_, the behavior
-> is undefined.
-> *\[Note:  An implementation is allowed to perform a binary search to match a
-> `case` label at runtime if the strict total ordering is found to be hold at
-> compile-time. --end note\]*
+> enumeration type, at compile-time, a user-defined `constexpr operator==`
+> needs to be issued to ensure the uniqueness of
+> _e<sub>1</sub> ...  e<sub>k</sub>_, and a user-defined `constexpr operator<`
+> can be issued to ensure the sortability of _e<sub>1</sub> ...  e<sub>k</sub>_;
+> the same operators shall be selected at runtime. --end note\]*
+> The elements `e` of a sorted sequence containing
+> _e<sub>1</sub> ...  e<sub>k</sub>_ are partitioned with respect to the
+> expression `e < s` and `!(s < e)`, while for all elements `e`, `e < s` shall
+> imply `!(s < e)`; otherwise, the behavior is undefined.
 
 Add a new grammar in A.5 gram.stmt:
 
